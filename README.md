@@ -2,47 +2,51 @@
 
 This is a toolbox for hyperspectral images, which is written by MATLAB(.m).
 
-## Contents
+## Algorithms
 
 ### Band Selection
 
-- FVGBS - Fast Volume Gradient Based Band selection: A Fast Volume Gradient Based Band Selection Method for Hyperspectral_Image.
+- [FVGBS](Papers/FVGBS.pdf) - Fast Volume Gradient Based Band Selection: A Fast Volume Gradient Based Band Selection Method for Hyperspectral_Image.
 
 ### Clustering
 
-- CCE - Connection Center Evolution
-- FSFDP - Fast Search and Find of Density Peaks
-- MeanShift - Mean Shift Clustering
-- SNMF - Symmetric Non-negative Matrix Factorization
-- SpectralClustering - Spectral Clustering
+- [CCA](Papers/CCA.pdf) - Clustering of Continuous Attributes
+- [FSFDP](Papers/FSFDP.pdf) - Clustering by Fast Search and Find of Density Peaks
+- [MeanShift](Papers/Meanshift.pdf) - Mean Shift Clustering
+- [SC](Papers/SC.pdf) - Spectral Clustering
+- [SNMF](Papers/SNMF.pdf) - Symmetric Non-negative Matrix Factorization for Graph Clustering
 
 ### Data Analysis
 
-- FastICA - Fast Independent Component Analysis
-- LLE - Locally Linear Embedding
-- LS - Least Squares
-- MNF - Minimum Noise Fraction
-- NNLS - Non-negative Least Squares
-- PCA - Principal Component Analysis
-- PSA - Principal Skewness Analysis
-- TLS - Total Least Squares
+- [FastICA](Papers/FastICA.pdf) - Fast Independent Component Analysis
+- [LLE](Papers/LLE.pdf) - Locally Linear Embedding
+- [LS](Papers/LS.pdf) - Linear Least Squares Regression
+- [MNF](Papers/MNF.pdf) - Minimum Noise Fraction
+- [NNLS](Papers/NNLS.pdf) - Nonnegative Least Squares
+- [PCA](Papers/PCA.pdf) - Principal Component Analysis
+- [PSA](Papers/PSA.pdf) - Principal Skewness Analysis
+- [TLS](Papers/TLS.pdf) - Total Least Squares
 
 ### Endmember Extraction
 
-- MVCNMF - Minimum Volume Constrained Nonnegative Matrix Factorization
-- NFINDR - N-FINDR: an algorithm for fast autonomous spectral end-member determination in hyperspectral data
+- [MVCNMF](Papers/MVCNMF.pdf) - Minimum Volume Constrained Nonnegative Matrix Factorization
+- [NFINDR](Papers/NFINDER.pdf) - N-FINDR: an algorithm for fast autonomous spectral end-member determination in hyperspectral data
 
 ### Image Registration
 
-- ANCPS - Autocorrelated Normalized Cross-Power Spectrum
-- CSM - Cyclic Shift Matrix
-- HOGE - Least Squares based Matching
-- IDFT_US - Upsampling Matching by IDFT
-- SVD_RANSAC - Matching based on SVD and RANSAC
+- [ANCPS](Papers/ANCPS.pdf) - A New Translation Matching Method Based on Autocorrelated Normalized Cross-Power Spectrum
+- [CSM](Papers/CSM.pdf) - Cyclic Shift Matrix - A New Tool for the Translation Matching Problem
+- [HOGE](Papers/HOGE.pdf) - A Subspace Identification Extension to the Phase Correlation Method
+- [IDFT_US](Papers/IDFT_US.pdf) - Efficient subpixel image registration algorithms
+- [SVD_RANSAC](Papers/SVD_RANSAC.pdf) - A Novel Subpixel Phase Correlation Method Using Singular Value Decomposition and Unified Random Sample Consensus
 
 ### Target Detection
 
-- CEM - Constrianed Energy Minimization
-- MTCEM - Multiple Targets Constrained Energy Minimization
+- [CEM](Papers/CEM.pdf) - Constrianed Energy Minimization
 - MF - Matched Filter
+- [MTCEM](Papers/MTCEM.pdf) - Multiple Targets Constrained Energy Minimization
+- [MTICEM](Papers/MTICEM.pdf) - Multiple Targets Inequality Constrained Energy Minimization
+- [SACE](Papers/SimplexACE.pdf) - Simplex ACE: a constrained subspace detector
 - SAM - Spectral Angle Mapper
+
+## Examples
