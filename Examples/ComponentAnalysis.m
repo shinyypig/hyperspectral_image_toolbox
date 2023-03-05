@@ -1,7 +1,7 @@
 %% 
 % Read 3 images and use them to generate 3 mixed images.
 
-clear;
+clear; close all;
 shape = [256, 256];
 im1 = double(imresize(imread('threads.png'), shape));
 im2 = double(imresize(imread('text.png'), shape));
@@ -18,7 +18,7 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(X(:, i), shape), []);
 end
-suptitle('Mixed Images');
+sgtitle('Mixed Images');
 %% 
 % The result of PCA.
 
@@ -27,16 +27,8 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
-suptitle('PCA');
-%% 
-% The result of PSA.
+sgtitle('PCA');
 
-Y = PSA(X, 3);
-figure;
-for i = 1:3
-    subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
-end
-suptitle('PSA');
 %% 
 % The result of FastICA.
 
@@ -45,4 +37,24 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
-suptitle('FastICA');
+sgtitle('FastICA');
+
+%% 
+% The result of PSA.
+
+Y = PSA(X, 3);
+figure;
+for i = 1:3
+    subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
+end
+sgtitle('PSA');
+
+%% 
+% The result of FastICA.
+
+Y = NPSA(X, 3);
+figure;
+for i = 1:3
+    subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
+end
+sgtitle('NPSA');

@@ -6,6 +6,10 @@ function M = tensor_mul(T, X, d)
     Tshape = size(T);
     Xshape = size(X);
 
+    if d > length(Tshape)
+        Tshape = cat(2, Tshape, ones(1, d - length(Tshape)));
+    end
+
     Mshape = Tshape([d, 1:d - 1, d + 1:length(Tshape)]);
     Mshape(1) = Xshape(2);
 
