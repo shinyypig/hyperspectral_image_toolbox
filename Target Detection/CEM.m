@@ -1,6 +1,5 @@
 function y = CEM(X, d)
-
-%CEM is a classic target detection algorithm.
+% CEM is a classic target detection algorithm.
 %   Assume n is the number of the pixels,
 %   d is the number of the bands.
 %

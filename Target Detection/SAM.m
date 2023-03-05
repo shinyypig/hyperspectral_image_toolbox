@@ -1,6 +1,5 @@
 function y = SAM(X, d)
-
-%SAM is a classic target detection algorithm.
+% SAM is a classic target detection algorithm.
 %   Assume n is the number of the pixels,
 %   d is the number of the bands.
 %

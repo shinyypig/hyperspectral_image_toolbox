@@ -1,6 +1,5 @@
 function y = MTCEM(X, D)
-
-%MTCEM is a multiple targets version of CEM.
+% MTCEM is a multiple targets version of CEM.
 %   Assume n is the number of the pixels,
 %   m is the number of the targets,
 %   d is the number of the bands.
