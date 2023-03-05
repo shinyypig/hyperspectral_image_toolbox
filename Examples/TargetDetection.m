@@ -3,34 +3,28 @@
 % 
 % We also show the three-band composite color image.
 
-clear;
-h = HSI(importdata('Data/Indian_pines.mat'));
+clear, close all;
+him = importdata('Data/Indian_pines.mat');
 
-rgb = h.rgb(0.2);
-imshow(rgb);
-%% 
-% Use .F() to flatten the 3D array to 2D array.
-% 
-% Use .locate() to find the desired spectra.
+[m, n, l] = size(him);
 
-X = h.F();
-loc = [49, 24];
-d = h.locate(loc, '2D');
+X = reshape(him, [], l);
+d = squeeze(him(49, 24, :))';
 %% 
 % CEM, MF and SAM are test in this experiment.
 
 y_CEM = CEM(X, d);
 y_MF = MF(X, d);
-y_SAM = SAM(X, d);
+y_SAM = -SAM(X, d);
 %% 
-% Use .result_reshape() to reshape the 1D results to 2D images.
-
-im_CEM = h.result_reshape(y_CEM);
-im_MF = h.result_reshape(y_MF);
-im_SAM = h.result_reshape(y_SAM);
+im_CEM = reshape(y_CEM, m, n);
+im_MF = reshape(y_MF, m, n);
+im_SAM = reshape(y_SAM, m, n);
 %% 
 % Imshow the results.
 
-imshow(im_CEM, []);
-imshow(im_MF, []);
-imshow(im_SAM, []);
+figure,
+subplot(131), imshow(im_CEM, []), title('CEM');
+subplot(132), imshow(im_MF, []), title('MF');
+subplot(133), imshow(im_SAM, []), title('SAM');
+exportgraphics(gcf, 'Examples/results/target_detection.png');

@@ -6,7 +6,10 @@ function y = SAM(X, d)
 %   Then, 
 %   X should be a n*d matrix,
 %   D should be a 1*d matrix.
-
+    
+    T = pinv(sqrtm(X' * X));
+    X = X * T;
+    d = d * T;
     cos_y = X * d' ./ sqrt(sum(X.^2, 2)) ./ norm(d);
-    y = acos(cos_y);
+    y = real(acos(cos_y));
 end

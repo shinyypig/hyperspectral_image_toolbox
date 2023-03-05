@@ -118,3 +118,5 @@ grid on;
 xlabel('\sigma_n');
 ylabel('std error');
 hold off;
+
+exportgraphics(gcf, 'Examples/results/image_registration.png');

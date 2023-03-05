@@ -1,4 +1,4 @@
-clear;
+clear; close all;
 N = 1000;
 m = 1;
 n = 100;

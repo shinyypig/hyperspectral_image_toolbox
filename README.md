@@ -50,3 +50,37 @@ This is a toolbox for hyperspectral images, which is written by MATLAB(.m).
 - SAM - Spectral Angle Mapper
 
 ## Examples
+
+### Component Analysis Example
+
+三幅混合在一起的图像
+
+![Mixed Images](Examples/results/mixed_imgs.png)
+
+PCA
+
+![Alt text](Examples/results/mixed_imgs_pca.png)
+
+FastICA
+
+![Alt text](Examples/results/mixed_imgs_fastica.png)
+
+PSA
+
+![Alt text](Examples/results/mixed_imgs_psa.png)
+
+NPSA
+
+![Alt text](Examples/results/mixed_imgs_npsa.png)
+
+### Image Registration Example
+
+Anti-noise performance of image registration algorithms
+
+![Alt text](Examples/results/image_registration.png)
+
+### Target Detection Example
+
+Single target detection results of CEM, MF and SAM
+
+![Alt text](Examples/results/target_detection.png)

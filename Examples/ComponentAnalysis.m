@@ -18,6 +18,7 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(X(:, i), shape), []);
 end
+exportgraphics(gcf, 'Examples/results/mixed_imgs.png');
 sgtitle('Mixed Images');
 %% 
 % The result of PCA.
@@ -27,8 +28,8 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
+exportgraphics(gcf, 'Examples/results/mixed_imgs_pca.png');
 sgtitle('PCA');
-
 %% 
 % The result of FastICA.
 
@@ -37,8 +38,8 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
+exportgraphics(gcf, 'Examples/results/mixed_imgs_fastica.png');
 sgtitle('FastICA');
-
 %% 
 % The result of PSA.
 
@@ -47,8 +48,8 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
+exportgraphics(gcf, 'Examples/results/mixed_imgs_psa.png');
 sgtitle('PSA');
-
 %% 
 % The result of FastICA.
 
@@ -57,4 +58,5 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
+exportgraphics(gcf, 'Examples/results/mixed_imgs_npsa.png');
 sgtitle('NPSA');
