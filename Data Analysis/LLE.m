@@ -1,5 +1,4 @@
 function y = LLE(X, k, d) 
-
 %LLE is a Manifold Learning function
 %   X is data, N*D matrix
 %   N is number of samples
