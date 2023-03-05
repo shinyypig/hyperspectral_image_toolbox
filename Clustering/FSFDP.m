@@ -1,5 +1,5 @@
 function [label, centers, rho, delta] = FSFDP(X, sigma, clusters)
-% FSFDP: Fast Spectral Feature Detection and Partitioning
+% FSFDP: Fast Search and Find of Density Peaks
 %   [label, centers, rho, delta] = FSFDP(X, sigma, clusters)
 %   Input:
 %       X: data matrix, each row is a sample

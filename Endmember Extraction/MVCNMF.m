@@ -1,5 +1,8 @@
 function [A, S] = MVCNMF(X, k)
-
+% MVCNMF: Minimum Volume Constrained Nonnegative Matrix Factorization
+%   [A, S] = MVCNMF(X, k) returns the factor matrices A and S such that
+%   X = AS. The number of columns of A is k. The number of rows of S is k.
+%   S is the source matrix, and A is the fractional abundance matrix.
     c = 1;
     tol = 1e-6;
     a = 1e-2;
