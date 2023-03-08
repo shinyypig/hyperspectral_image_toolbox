@@ -84,3 +84,5 @@ Anti-noise performance of image registration algorithms
 Single target detection results of CEM, MF and SAM
 
 ![Alt text](Examples/results/target_detection.png)
+
+@all-contributors bot
