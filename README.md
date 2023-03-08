@@ -85,4 +85,10 @@ Single target detection results of CEM, MF and SAM
 
 ![Alt text](Examples/results/target_detection.png)
 
-@all-contributors bot
+
+## Contributors
+<a href="https://github.com/shinyypig/hyperspectral_image_toolbox/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=shinyypig/hyperspectral_image_toolbox" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
