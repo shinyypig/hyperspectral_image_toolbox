@@ -57,7 +57,7 @@ This is a toolbox for hyperspectral images, which is written by MATLAB(.m).
 
 ### Component Analysis Example
 
-三幅混合在一起的图像
+Three mixed images.
 
 ![Mixed Images](Examples/results/mixed_imgs.png)
 
@@ -89,10 +89,8 @@ Single target detection results of CEM, MF and SAM
 
 ![Alt text](Examples/results/target_detection.png)
 
-
 ## Contributors
-<a href="https://github.com/shinyypig/hyperspectral_image_toolbox/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=shinyypig/hyperspectral_image_toolbox" />
-</a>
+
+[![contributors](https://contrib.rocks/image?repo=shinyypig/hyperspectral_image_toolbox)](https://github.com/shinyypig/hyperspectral_image_toolbox/graphs/contributors)
 
 Made with [contrib.rocks](https://contrib.rocks).
