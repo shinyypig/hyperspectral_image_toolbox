@@ -45,6 +45,8 @@ end
 acc = acc / t;
 %%
 figure, plot(bands, acc);
+xlabel('number of selected bands');
+ylabel('classification accuracy');
 legend(alg_list, 'Location', 'best');
 exportgraphics(gcf, 'Examples/results/band_sel_svm_acc.png');
 %%
