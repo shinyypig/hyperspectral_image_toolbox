@@ -55,6 +55,16 @@ This is a toolbox for hyperspectral images, which is written by MATLAB(.m).
 
 ## Examples
 
+### Band Selection Example
+
+Select 3 bands to composite the false color image.
+
+![Alt text](Examples/results/band_sel_false_rgb.png)
+
+The SVM classification results on the selected bands.
+
+![Alt text](Examples/results/band_sel_svm_acc.png)
+
 ### Component Analysis Example
 
 Three mixed images.

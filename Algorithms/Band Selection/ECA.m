@@ -45,5 +45,5 @@ function Band = ECA(him, n)
     ES = rho .* delta; %Exemplar socre defined in the paper
     [~, Ind] = sort(ES, 'descend');
     Band = Ind(1:n);
-    Band = sort(Band);
+    Band = sort(Band)';
 end
