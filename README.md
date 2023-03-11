@@ -87,6 +87,20 @@ NPSA
 
 ![Alt text](Examples/results/mixed_imgs_npsa.png)
 
+### Dimension Reduction Example
+
+![Alt text](Examples/results/DR_data1.png)
+
+![Alt text](Examples/results/DR_data1_result.png)
+
+![Alt text](Examples/results/DR_data2.png)
+
+![Alt text](Examples/results/DR_data2_result.png)
+
+![Alt text](Examples/results/DR_data3.png)
+
+![Alt text](Examples/results/DR_data3_result.png)
+
 ### Image Registration Example
 
 Anti-noise performance of image registration algorithms
