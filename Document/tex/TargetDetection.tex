@@ -2,7 +2,7 @@
 在普通的彩色图像中进行目标检测往往不仅需要目标的颜色信息，还需要目标的形态信息。这是因为普通的彩色图像只包含RGB三个波段，所包含的信息过少，目标与背景之间的区分度较低。比如真植被和假植被在彩色图像中都是绿色，很难区分。而多光谱或高光谱图像具有丰富的光谱维度信息，往往只需要获得目标光谱就足以进行目标检测。一般来说，针对一幅多（高）光谱图像，目标检测算法的目的是生成一副灰度图，其中目标区域的像素值与背景区域的像素值差异尽可能大。
 
 \subsection{问题建模}
-设有一幅光谱图像 \(\mathbf{H} \in \mathbb{R}^{m \times n \times l}\)，即图像域大小为 \(m\times n\)，具有 \(l\) 个波段。可以通过简单的reshape操作将其转换为一个 \(N \times L\) 的矩阵
+设有一幅光谱图像 \(\mathbf{H} \in \mathbb{R}^{m \times n \times l}\)，即图像域大小为 \(m\times n\)，具有 \(l\) 个波段。可以通过简单的 resize 操作将其转换为一个 \(N \times L\) 的矩阵
 \[
     \mathbf{X} = \begin{bmatrix}
         \bm{x}_{1}^{\mathrm{T}} \\
@@ -20,20 +20,78 @@
     \end{aligned} \right.
 \]
 
-但在实际应用中，这样简单的模型是不够的。一是，图像中往往会存在噪声，与目标光谱 \(\bm{d}\) 完全相同的光谱在图像中可能就不存在，尽管确实存在目标。二是，在高光谱图像中往往会存在混像元，即一个像元中包含了多个地物的光谱。对于这些混像元，显然并不能简单地将其归类为目标像素或是非目标像素。
+将该映射函数作用到整个数据上，我们可以得到一个向量\(f(\mathbf{X}, \bm{d}) \in \mathbb{R}^{N \times 1}\)，接着可以将这个向量 resize 为一个 \(m \times n\) 的图像。该二值图像即为目标检测的结果，其中目标区域的像素值为1，背景区域的像素值为0。
 
-因此，有很多更加实用的模型提了出来，我们将会在下文中对一些常见的模型进行一一介绍。
+但在实际应用中，这样简单的模型是不够的。一是，图像中往往会受到光照、噪声等各种因素的干扰，此时尽管确实存在目标，但与目标光谱 \(\bm{d}\) 完全相同的光谱在图像中并不存在。二是，在高光谱图像中往往会存在混像元，即一个像元中包含了多个地物的光谱。对于这些混像元，显然并不能简单地将其归类为目标像素或是非目标像素。
 
-\subsection{光谱角度映射（Spectral Angle Mapper）}
+值得注意的是，高光谱图像具有较高的光谱分辨率，地物之间具有较好的可分性，因此一个线性函数往往就能够获得较好的结果。下文中，我们将介绍一些经典的高光谱图像目标检测算法，这些算法大部分都是基于线性模型的。
+
+\subsection{常用算法介绍}
+
+\subsubsection{光谱角度映射（Spectral Angle Mapper）}
 光谱角度映射（Spectral Angle Mapper，SAM）是一种基于光谱之间夹角的目标检测算法。其基本思想为：像元的光谱与目标光谱之间的夹角越小，说明该像元与目标光谱越相似，因此该像元越可能是目标像元。SAM 对光照强度不敏感，是一种非常简单实用的目标检测算法。SAM 的计算公式如下：
 \[
     f(\bm{x}_{i}, \bm{d}) = \cos^{-1}\left(\frac{\bm{x}_{i}^{\mathrm{T}}\bm{d}}{\|\bm{x}_{i}\|\|\bm{d}\|}\right).
 \]
 需要注意的是，根据上式，\(f(\bm{x}_{i}, \bm{d})\) 越小，则说明 \(\bm{x}_{i}\) 与 \(\bm{d}\) 越相似。有的时候我们会省去 \(\cos^{-1}\)，直接令
 \[
-    f(\bm{x}_{i}, \bm{d}) = \frac{\bm{x}_{i}^{\mathrm{T}}\bm{d}}{\|\bm{x}_{i}\|\|\bm{d}\|}.
+    f(\bm{x}_{i}, \bm{d}) = \frac{\bm{x}_{i}^{\mathrm{T}}\bm{d}}{\|\bm{x}_{i}\|\|\bm{d}\|},
 \]
-此时，\(f(\bm{x}_{i}, \bm{d})\) 越大，则说明 \(\bm{x}_{i}\) 与 \(\bm{d}\) 越相似。特别地，当 \(\bm{x}_{i} = \bm{d}\) 时，\(f(\bm{x}_{i}, \bm{d}) = 1\)。
+也就是计算目标光谱与像元光谱的相关系数。此时，\(f(\bm{x}_{i}, \bm{d})\) 越大，则说明 \(\bm{x}_{i}\) 与 \(\bm{d}\) 越相似。特别地，当 \(\bm{x}_{i} = \bm{d}\) 时，\(f(\bm{x}_{i}, \bm{d}) = 1\)。
 
 有的时候，直接计算光谱夹角效果并不好。这是因为获得地物的光谱实际上是日光到达地面后的光谱再乘上地物的反射率，所以不同地物的光谱看起来非常接近（夹角很小）。因此，SAM 通常在校正后的反射率数据中使用。或者，我们可以先对高光谱图像进行白化，之后再对进行目标检测。
 
+从 \cref{fig:sam_compare_1} 可以看出，在原始数据中，不同地物的光谱大致趋势是很接近的，但白化之后它们之间区别就很明显了。进一步地，从 \cref{fig:sam_compare_2} 可以看到，白化之后，不同地物的光谱之间的相关系数远远小于白化之前的。
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}{.45\textwidth}
+        \includegraphics[width=\textwidth]{./img/sam_spectral}
+        \caption{}
+        \label{fig:sam_compare_1}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+        \includegraphics[width=\textwidth]{./img/sam_pixel}
+        \caption{}
+        \label{fig:sam_compare_2}
+    \end{subfigure}
+    \caption{原始数据对比白化后数据 (a) 随机选择50个像元绘制其光谱 (b) 这50个像元与第一个像元之间的相关系数}
+    \label{fig:sam_compare}
+\end{figure}
+
+\subsubsection{约束能量最小化（CEM）}
+直接使用 SAM 的效果有可能不理想，这是因为数据的分布并不是均匀的，简单地衡量光谱之间的夹角（或者相关系数）并不能很好地区分目标像元和非目标像元。因此，我们希望目标检测算法对数据的分布不敏感，这样使用者就无需手动对数据进行预处理了。约束能量最小化（Constrained Energy Minimization，CEM），就是一个这样的算法。它的基本思想是找到一个投影向量，使得投影后的数据的能量最小的同时目标向量的投影值为 1。不妨假设数据为\(\mathbf{X} \in \mathbb{R}^{N \times L}\)，目标向量为\(\bm{d} \in \mathbb{R}^{L \times 1}\)，投影向量为\(\bm{w} \in \mathbb{R}^{L \times 1}\)，则 CEM 的目标函数为：
+\[
+    \min_{\bm{w}} \frac{1}{2}\left\| \mathbf{X} \bm{w} \right\|_{\mathrm{F}}^{2} \quad \text{s.t.} \quad \bm{d}^{\mathrm{T}}\bm{w} = 1. 
+\]
+其中，\(\|\cdot\|_{\mathrm{F}}\) 表示矩阵的 Frobenius 范数。注意到
+\[
+    \left\| \mathbf{X} \bm{w} \right\|_{\mathrm{F}}^{2} = (\mathbf{X} \bm{w})^{\mathrm{T}}(\mathbf{X} \bm{w}) = \bm{w}^{\mathrm{T}}(\mathbf{X}^{\mathrm{T}}\mathbf{X})\bm{w} = \bm{w}^{\mathrm{T}}\mathbf{R}\bm{w},
+\]
+其中\(\mathbf{R} = \mathbf{X}^{\mathrm{T}}\mathbf{X}\)为数据的相关矩阵。因此，CEM 的目标函数可以精简成：
+\[
+    \min_{\bm{w}} \frac{1}{2} \bm{w}^{\mathrm{T}}\mathbf{R}\bm{w} \quad \text{s.t.} \quad \bm{d}^{\mathrm{T}}\bm{w} = 1.    
+\]
+这是一个等式约束二次规划问题，并且是凸的，可以使用拉格朗日乘子法得到最优解。具体地，我们令
+\[
+    \mathcal{L}(\bm{w}, \lambda) = \frac{1}{2} \bm{w}^{\mathrm{T}}\mathbf{R}\bm{w} - \lambda\left(\bm{d}^{\mathrm{T}}\bm{w} - 1\right),
+\]
+则有
+\[
+    \begin{aligned}
+        \frac{\partial \mathcal{L}}{\partial \bm{w}}  & = \mathbf{R}\bm{w} - \lambda\bm{d} = 0, \\
+        \frac{\partial \mathcal{L}}{\partial \lambda} & = -\bm{d}^{\mathrm{T}}\bm{w} + 1 = 0.
+    \end{aligned}
+\]
+第一个等式为0可以得到
+\[
+    \bm{w} = \frac{1}{\lambda}\mathbf{R}^{-1}\bm{d},  
+\]
+将该式带入到\(-\bm{d}^{\mathrm{T}}\bm{w} + 1 = 0\)中，得到
+\[
+    \lambda = \frac{1}{\bm{d}^{\mathrm{T}}\mathbf{R}^{-1}\bm{d}}.
+\]
+因此，
+\[
+    \bm{w} = \frac{\mathbf{R}^{-1}\bm{d}}{\bm{d}^{\mathrm{T}}\mathbf{R}^{-1}\bm{d}}.
+\]
