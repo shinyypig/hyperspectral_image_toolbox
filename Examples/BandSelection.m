@@ -2,9 +2,9 @@
 clear; close all;
 
 %% read hsi data
-him = double(importdata('./Data/Indian_pines.mat'));
+him = double(importdata('Indian_pines.mat'));
 him = him ./ max(him, [], [1, 2]);
-gt = importdata('./Data/Indian_pines_gt.mat');
+gt = importdata('Indian_pines_gt.mat');
 alg_list = {'ECA', 'EFDPC', 'FVGBS', 'MNBS', 'OPBS'};
 
 %% select 3 bands

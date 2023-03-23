@@ -1,4 +1,4 @@
-%% 
+%%
 % Read 3 images and use them to generate 3 mixed images.
 
 clear; close all;
@@ -11,16 +11,16 @@ im2 = mat2gray(im2);
 im3 = mat2gray(im3);
 X_ = [reshape(im1, [], 1), reshape(im2, [], 1), reshape(im3, [], 1)];
 X = X_ * randn(3);
-%% 
+%%
 % Three mixed images.
 
 figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(X(:, i), shape), []);
 end
-exportgraphics(gcf, 'Examples/results/mixed_imgs.png');
+exportgraphics(gcf, './results/mixed_imgs.png');
 sgtitle('Mixed Images');
-%% 
+%%
 % The result of PCA.
 
 Y = PCA(X, 3);
@@ -28,9 +28,9 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
-exportgraphics(gcf, 'Examples/results/mixed_imgs_pca.png');
+exportgraphics(gcf, './results/mixed_imgs_pca.png');
 sgtitle('PCA');
-%% 
+%%
 % The result of FastICA.
 
 Y = FastICA(X, 3);
@@ -38,9 +38,9 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
-exportgraphics(gcf, 'Examples/results/mixed_imgs_fastica.png');
+exportgraphics(gcf, './results/mixed_imgs_fastica.png');
 sgtitle('FastICA');
-%% 
+%%
 % The result of PSA.
 
 Y = PSA(X, 3);
@@ -48,9 +48,9 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
-exportgraphics(gcf, 'Examples/results/mixed_imgs_psa.png');
+exportgraphics(gcf, './results/mixed_imgs_psa.png');
 sgtitle('PSA');
-%% 
+%%
 % The result of FastICA.
 
 Y = NPSA(X, 3);
@@ -58,5 +58,5 @@ figure;
 for i = 1:3
     subplot(1, 3, i), imshow(reshape(Y(:, i), shape), []);
 end
-exportgraphics(gcf, 'Examples/results/mixed_imgs_npsa.png');
+exportgraphics(gcf, './results/mixed_imgs_npsa.png');
 sgtitle('NPSA');

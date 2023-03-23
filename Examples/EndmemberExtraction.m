@@ -1,5 +1,5 @@
 clear;
-h = HSI(importdata('Data/Indian_pines.mat'));
+h = HSI(importdata('Indian_pines.mat'));
 %%
 num = 5;
 E = NFINDR(h.F(), num);
