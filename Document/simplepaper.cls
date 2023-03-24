@@ -312,3 +312,10 @@
     \renewcommand{\algorithmicrequire}{\textbf{Input:}}
     \renewcommand{\algorithmicensure}{\textbf{Output:}}
 }{\relax}
+
+\renewcommand\tableofcontents{
+    \hypersetup{linktoc=all, linkcolor=black}
+    \section*{\contentsname\@mkboth{\MakeUppercase\contentsname
+      }{\MakeUppercase\contentsname}}
+    \@starttoc{toc}
+}
