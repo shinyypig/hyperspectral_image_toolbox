@@ -1,12 +1,12 @@
-# Hyperspectral Image Toolbox ([中文](READEM_ZH.md))
+# Hyperspectral Image Toolbox
 
-This project aims to build a Matlab version of hyperspectral image processing toolbox, including but not limited to band selection, dimension reduction, clustering, classification, image registration, etc. The core purpose of this project is to facilitate everyone to learn and research hyperspectral image processing algorithms, so for each algorithm, detailed comments and explanations will be provided, as well as some simple examples. In addition, the project also provides some common hyperspectral datasets for testing.
+本项目致力于搭建一个 Matlab 版本的高光谱图像处理的基础工具箱，包括但不限于高光谱图像的波段选择、降维、聚类、分类、图像配准等。本项目的核心目的是为了方便大家学习和研究高光谱图像处理算法，因此针对每一个算法都会提供详细的注释和说明，以及一些简单的示例。此外项目中还提供了一些常用的高光谱数据集，方便大家进行测试。
 
-Though this project is mainly about hyperspectral image processing, the algorithms involved are not limited to the field of hyperspectral image processing. Hyperspectral images are three-dimensional data, which can be seen as a combination of one-dimensional signals and two-dimensional signals (the spectral dimension can be seen as a one-dimensional signal, and the spatial dimension can be seen as a two-dimensional image). However, this combination cannot be seen as a simple combination, but a kind of dimensionality increase, which makes the hyperspectral image itself have special properties. And high-dimensional data often have similar properties, and hyperspectral images can be seen as the simplest example, and the only data that can be visualized (data with four or more dimensions cannot be directly visualized). Therefore, for those who want to further study and research data processing algorithms, why not use this project as a door opener or a stepping stone?
+尽管本项目以高光谱图像处理为主，但是其中涉及到的算法并不局限于高光谱图像处理领域。高光谱图像作为一种三维的数据，本身就是一维信号和二维信号的一种结合（光谱维可以看作一维信号，空间维可以看作是二维图像）。但这种结合并不能看作是简单的组合，而是一种升维，这让高光谱图像本身具有了特殊的性质。而高维数据往往都具备类似的性质，而高光谱图像可以看作是一个最简单的实例，也是唯一可以可视化的数据（四维及以上的数据无法直接可视化）。因此，对于想要进一步深入学习和研究数据处理算法的同学，不妨将本项目作为一个敲门砖或是一个垫脚石。
 
-## Algorithms
+## 算法
 
-### Band Selection
+### 波段选择
 
 - [ECA](Papers/ECA.pdf) - Exemplar Component Analysis: A Fast Band Selection Method for Hyperspectral Imagery
 - [EFDPC](Papers/EFDPC.pdf) - A Novel Ranking-Based Clustering Approach for Hyperspectral Band Selection
