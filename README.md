@@ -59,59 +59,84 @@ This is a toolbox for hyperspectral images, which is written by MATLAB(.m).
 
 Select 3 bands to composite the false color image.
 
-![Alt text](Examples/results/band_sel_false_rgb.png)
+<div align=center>
+    <img width=80% style=margin:2% src="Examples/results/band_sel_false_rgb.png">
+</div>
 
 The SVM classification results on the selected bands.
 
-![Alt text](Examples/results/band_sel_svm_acc.png)
+<div align=center>
+    <img width=40% style=margin:2% src="Examples/results/band_sel_svm_acc.png">
+</div>
 
 ### Component Analysis Example
 
-Three mixed images.
+<div align=center>
+    <img width=50% style=margin:2% src="Examples/results/mixed_imgs.png">
+    <div> Three mixed images </div>
+</div>
 
-![Mixed Images](Examples/results/mixed_imgs.png)
+<div align=center>
+    <img width=50% style=margin:2% src="Examples/results/mixed_imgs_pca.png">
+    <div> PCA </div>
+</div>
 
-PCA
+<div align=center>
+    <img width=50% style=margin:2% src="Examples/results/mixed_imgs_fastica.png">
+    <div> FastICA </div>
+</div>
 
-![Alt text](Examples/results/mixed_imgs_pca.png)
+<div align=center>
+    <img width=50% style=margin:2% src="Examples/results/mixed_imgs_psa.png">
+    <div> PSA </div>
+</div>
 
-FastICA
-
-![Alt text](Examples/results/mixed_imgs_fastica.png)
-
-PSA
-
-![Alt text](Examples/results/mixed_imgs_psa.png)
-
-NPSA
-
-![Alt text](Examples/results/mixed_imgs_npsa.png)
+<div align=center>
+    <img width=50% style=margin:2% src="Examples/results/mixed_imgs_npsa.png">
+    <div> NPSA </div>
+</div>
 
 ### Dimension Reduction Example
 
-![Alt text](Examples/results/DR_data1.png)
+<div align=center>
+    <img width=40% style=margin:2% src="Examples/results/DR_data1.png">
+</div>
 
-![Alt text](Examples/results/DR_data1_result.png)
+<div align=center>
+    <img width=80% style=margin:2% src="Examples/results/DR_data1_result.png">
+</div>
 
-![Alt text](Examples/results/DR_data2.png)
+<div align=center>
+    <img width=40% style=margin:2% src="Examples/results/DR_data2.png">
+</div>
 
-![Alt text](Examples/results/DR_data2_result.png)
+<div align=center>
+    <img width=80% style=margin:2% src="Examples/results/DR_data2_result.png">
+</div>
 
-![Alt text](Examples/results/DR_data3.png)
+<div align=center>
+    <img width=40% style=margin:2% src="Examples/results/DR_data3.png">
+</div>
 
-![Alt text](Examples/results/DR_data3_result.png)
+<div align=center>
+    <img width=80% style=margin:2% src="Examples/results/DR_data3_result.png">
+</div>
 
 ### Image Registration Example
 
 Anti-noise performance of image registration algorithms
 
-![Alt text](Examples/results/image_registration.png)
+<div align=center>
+    <img width=80% style=margin:2% src="Examples/results/image_registration.png">
+</div>
 
 ### Target Detection Example
 
 Single target detection results of CEM, MF and SAM
 
-![Alt text](Examples/results/target_detection.png)
+<div align=center>
+    <img width=60% style=margin:2% src="Examples/results/target_detection.png">
+</div>
 
 ## Contributors
 
