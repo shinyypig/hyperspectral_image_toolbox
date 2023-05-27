@@ -40,11 +40,11 @@ R_ = X_(idx, :) * d_' ./ (X_norm_(idx) * d_norm_);
 % R_ = R_ / max(R_(:));
 
 figure;
-subplot(2, 1, 1), plot(R);
+subplot(2, 1, 1), stem(R, 'filled');
 xlabel('Pixel index');
 title('Original');
 
-subplot(2, 1, 2), plot(R_);
+subplot(2, 1, 2), stem(R_, 'filled');
 xlabel('Pixel index');
 title('Whitened');
 exportgraphics(gcf, '../img/sam_pixel.png');

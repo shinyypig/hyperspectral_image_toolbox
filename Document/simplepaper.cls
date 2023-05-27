@@ -15,9 +15,9 @@
 \DeclareVoidOption{cn}{\skv{lang=cn}}
 \DeclareVoidOption{en}{\skv{lang=en}}
 
-% 获取中文字体参数，默认founder
-\DeclareStringOption[ctexfont]{chinesefont}
-\DeclareVoidOption{ctexfont}{\skv{chinesefont=ctexfont}}
+% 获取中文字体参数，默认plain
+\DeclareStringOption[plain]{chinesefont}
+\DeclareVoidOption{plain}{\skv{chinesefont=plain}}
 \DeclareVoidOption{founder}{\skv{chinesefont=founder}}
 \DeclareVoidOption{nofont}{\skv{chinesefont=nofont}}
 
@@ -28,10 +28,10 @@
 \DeclareVoidOption{12pt}{\skv{fontsize=12pt}}
 
 % 是否显示行号，默认off
-\DeclareStringOption[final]{style}
-\DeclareVoidOption{final}{\skv{style=final}}
-\DeclareVoidOption{preprint}{\skv{style=preprint}}
-\DeclareVoidOption{nocomp}{\skv{style=nocomp}}
+\DeclareStringOption[final]{mode}
+\DeclareVoidOption{final}{\skv{mode=final}}
+\DeclareVoidOption{preprint}{\skv{mode=preprint}}
+\DeclareVoidOption{nocomp}{\skv{mode=nocomp}}
 
 % 设置引用格式
 \DeclareStringOption[numeric-comp]{citestyle}
@@ -115,6 +115,7 @@
     backend=\SIMPLE@bibend,
     citestyle=\SIMPLE@citestyle,
     bibstyle=\SIMPLE@bibstyle,
+    sorting=none
 ]{biblatex}
 \defbibheading{simplepaper}[\ebibname]{
     \section*{#1}
@@ -177,45 +178,44 @@
 \fi
 
 % 判断是否显示行号
-\ifdefstring{\SIMPLE@style}{preprint}{
+\ifdefstring{\SIMPLE@mode}{preprint}{
     \RequirePackage{lineno}
     \linenumbers
 }
 
 % 判断是否压缩图片
-\ifdefstring{\SIMPLE@style}{nocomp}{
+\ifdefstring{\SIMPLE@mode}{nocomp}{
+    \RequirePackage{lineno}
+    \linenumbers
     \special{dvipdfmx:config z 0}
 }
 
 % 设置中文字体
 \ifdefstring{\SIMPLE@lang}{cn}{
     \renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+    \ifdefstring{\SIMPLE@chinesefont}{plain}{
+        \RequirePackage[UTF8,scheme=plain]{ctex}
+    }{\relax}
+
     \ifdefstring{\SIMPLE@chinesefont}{founder}{
         \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
-        \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
-        \setCJKsansfont[BoldFont={FZHei-B01}]{FZKai-Z03}
-        \setCJKmonofont[BoldFont={FZHei-B01}]{FZFangSong-Z02}
-        \setCJKfamilyfont{zhsong}{FZShuSong-Z01}
-        \setCJKfamilyfont{zhhei}{FZHei-B01}
-        \setCJKfamilyfont{zhkai}[BoldFont={FZHei-B01}]{FZKai-Z03}
-        \setCJKfamilyfont{zhfs}[BoldFont={FZHei-B01}]{FZFangSong-Z02}
-        \newcommand*{\songti}{\CJKfamily{zhsong}}
-        \newcommand*{\heiti}{\CJKfamily{zhhei}}
-        \newcommand*{\kaishu}{\CJKfamily{zhkai}}
-        \newcommand*{\fangsong}{\CJKfamily{zhfs}}
+        \setCJKmainfont{FZShuSong-Z01}[
+            UprightFont={FZFangSong-Z02},
+            BoldFont={FZHei-B01},
+            ItalicFont={FZKai-Z03},
+            BoldItalicFont={FZHei-B01}
+        ]
+        \setCJKsansfont{FZKai-Z03}[
+            BoldFont={FZHei-B01}
+        ]
+        \setCJKmonofont{FZFangSong-Z02}[
+            BoldFont={FZHei-B01}
+        ]
     }{\relax}
 
     \ifdefstring{\SIMPLE@chinesefont}{nofont}{
         \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
     }{\relax}
-
-    \ifdefstring{\SIMPLE@chinesefont}{ctexfont}{
-        \PassOptionsToPackage{quiet}{xeCJK}
-        \RequirePackage[UTF8,scheme=plain]{ctex}
-    }{\relax}
-
-    \AfterEndPreamble{
-        \setlength\parindent{2\ccwd}}
 }{\relax}
 
 
@@ -249,8 +249,6 @@
     \renewcommand{\abstracttextfont}{\sffamily\small\noindent\ignorespaces}
     % 新定义的引用名称
     \newcommand{\keywords}[1]{\vskip2ex\par\noindent\normalfont{\bfseries 关键词: } #1}
-    % \newcommand\figref[1]{{\bfseries 图~\ref{#1}}}
-    % \newcommand\tabref[1]{{\bfseries 表~\ref{#1}}}
     \renewcommand{\appendixtocname}{附录}
     \renewcommand{\appendixpagename}{附录}
     \renewcommand{\algorithmicrequire}{\textbf{输入：}}
