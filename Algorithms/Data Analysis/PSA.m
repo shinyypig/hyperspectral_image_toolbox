@@ -1,19 +1,18 @@
-function X = PSA(X, k)
-% Principal Skewness Analysis
-%   X: N x L data matrix
-%   k: number of principal components
-%   X: N x k principal components
+function [X, U] = PSA(X, k)
+    % Principal Skewness Analysis
+    %   X: N x L data matrix
+    %   k: number of principal components
+    %   X: N x k principal components
     d = size(X, 2);
     % white the data
     X = X - mean(X, 1);
-    R = X' * X;
-    X = X * pinv(sqrtm(R));
+    X = X * (X' * X) ^ (-1/2);
 
     % create the statistical tensor
     S = create_tensor(X);
     % create empty matrix for principal directions
     U = zeros(d, k);
-    tol = 1e-5;
+    tol = 1e-10;
 
     % find the principal directions
     for i = 1:k
@@ -23,7 +22,7 @@ function X = PSA(X, k)
         u_ = u;
         % project u onto the orthogonal complement of U
         P = eye(d) - U * U';
-        
+
         % find the principal direction
         for t = 1:1000
             S1 = tensor_mul(S, u, 3);
