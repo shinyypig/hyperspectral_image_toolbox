@@ -13,7 +13,9 @@
 
 设有一幅光谱图像 $\mathbf{H} \in \mathbb{R}^{m \times n \times l}$，即图像域大小为 $m\times n$，具有 $l$ 个波段。可以通过简单的 resize 操作将其转换为一个 $N \times L$ 的矩阵
 
-$$\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}^{\mathrm{T}} \\ \mathbf{x}_{2}^{\mathrm{T}} \\ \vdots \\ \mathbf{x}\_{N}^{\mathrm{T}} \\ \end{bmatrix}$$
+$$
+\mathbf{X} = \begin{bmatrix} \mathbf{x}_{1}^{\mathrm{T}} \\ \mathbf{x}_{2}^{\mathrm{T}} \\ \vdots \\ \mathbf{x}\_{N}^{\mathrm{T}} \\ \end{bmatrix}
+$$
 
 其中 $N=m \times n$ ， $L=l$ ， $\mathbf{x}_{i} \in \mathbb{R}^{L \times 1}$ 为第$i$个像素的光谱。假设目标光谱为$\mathbf{d}$，那么目标检测的目标是找到一个映射函数 $f(\cdot)$ ：
 
