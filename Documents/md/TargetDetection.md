@@ -39,11 +39,15 @@ $$
 
 光谱角度映射（Spectral Angle Mapper，SAM）是一种基于光谱之间夹角的目标检测算法。其基本思想为：像元的光谱与目标光谱之间的夹角越小，说明该像元与目标光谱越相似，因此该像元越可能是目标像元。SAM 对光照强度不敏感，是一种非常简单实用的目标检测算法。SAM 的计算公式如下：
 
-$$f(\mathbf{x}_{i}, \mathbf{d}) = \cos^{-1}\left(\frac{\mathbf{x}_{i}^{\mathrm{T}}\mathbf{d}}{\|\mathbf{x}_{i}\|\|\mathbf{d}\|}\right).$$
+$$
+f(\mathbf{x}_{i}, \mathbf{d}) = \cos^{-1}\left(\frac{\mathbf{x}_{i}^{\mathrm{T}}\mathbf{d}}{\|\mathbf{x}_{i}\|\|\mathbf{d}\|}\right).
+$$
 
 需要注意的是，根据上式，$f(\mathbf{x}_{i}, \mathbf{d})$ 越小，则说明 $\mathbf{x}_{i}$ 与 $\mathbf{d}$ 越相似。有的时候我们会省去 $\cos^{-1}$，直接令
 
-$$f(\mathbf{x}_{i}, \mathbf{d}) = \frac{\mathbf{x}_{i}^{\mathrm{T}}\mathbf{d}}{\|\mathbf{x}_{i}\|\|\mathbf{d}\|},$$
+$$
+f(\mathbf{x}_{i}, \mathbf{d}) = \frac{\mathbf{x}_{i}^{\mathrm{T}}\mathbf{d}}{\|\mathbf{x}_{i}\|\|\mathbf{d}\|},
+$$
 
 也就是计算目标光谱与像元光谱的相关系数。此时，$f(\mathbf{x}_{i}, \mathbf{d})$ 越大，则说明 $\mathbf{x}_{i}$ 与 $\mathbf{d}$ 越相似。特别地，当 $\mathbf{x}_{i} = \mathbf{d}$ 时，$f(\mathbf{x}_{i}, \mathbf{d}) = 1$。
 
