@@ -57,35 +57,42 @@ title('LLE'), axis equal;
 
 exportgraphics(gcf, './results/DR_data2_result.png');
 %% Swiss Roll Data
-num = 500;
-theta = linspace(0, 2.5 * pi, 30);
+n = 1200;
+r = unifrnd(0, 1, n, 1);
+l = unifrnd(0, 1, n, 1);
 
-[Xt, Xw] = meshgrid(theta, linspace(0, 1, 40));
-Xr = Xt(:) / max(Xt(:)) / 2 +1/2;
-Xt = Xt(:) + rand(size(Xt(:))) * 0.4;
-Xw = Xw(:) + rand(size(Xw(:))) * 0.1;
-X = [cos(Xt) .* Xr, sin(Xt) .* Xr, Xw];
-C = Xt;
+t = (2 * pi) / 2 * (1 + 2 * r);
+x = t .* cos(t) / max(t(:));
+y = l;
+z = t .* sin(t) / max(t(:));
+
+C = t;
+X = [x y z];
+
 figure, scatter3(X(:, 1), X(:, 2), X(:, 3), [], C, 'filled');
 title('Swiss Roll Data'), axis equal;
-view(280, 80);
 exportgraphics(gcf, './results/DR_data3.png');
 
 X_PCA = PCA(X, 2);
 X_PSA = PSA(X, 2);
-X_LLE = LLE(X, 12, 2);
+X_LLE = LLE(X, 15, 2);
+X_LE = LE(X, 0.07, 2);
 
 figure('Position', [0, 0, 1000, 300]);
-subplot(131);
+subplot(141);
 scatter(X_PCA(:, 1), X_PCA(:, 2), [], C, 'filled');
-title('PCA'), axis equal;
+title('PCA'), axis square;
 
-subplot(132);
+subplot(142);
 scatter(X_PSA(:, 1), X_PSA(:, 2), [], C, 'filled');
-title('PSA'), axis equal;
+title('PSA'), axis square;
 
-subplot(133);
+subplot(143);
 scatter(X_LLE(:, 1), X_LLE(:, 2), [], C, 'filled');
-title('LLE'), axis equal;
+title('LLE'), axis square;
+
+subplot(144);
+scatter(X_LE(:, 1), X_LE(:, 2), [], C, 'filled');
+title('LE'), axis square;
 
 exportgraphics(gcf, './results/DR_data3_result.png');
