@@ -61,7 +61,7 @@ n = 1200;
 r = unifrnd(0, 1, n, 1);
 l = unifrnd(0, 1, n, 1);
 
-t = (2 * pi) / 2 * (1 + 2 * r);
+t = (3 * pi) / 2 * (1 + 2 * r);
 x = t .* cos(t) / max(t(:));
 y = l;
 z = t .* sin(t) / max(t(:));
@@ -75,7 +75,7 @@ exportgraphics(gcf, './results/DR_data3.png');
 
 X_PCA = PCA(X, 2);
 X_PSA = PSA(X, 2);
-X_LLE = LLE(X, 15, 2);
+X_LLE = LLE(X, 10, 2);
 X_LE = LE(X, 0.07, 2);
 
 figure('Position', [0, 0, 1000, 300]);
